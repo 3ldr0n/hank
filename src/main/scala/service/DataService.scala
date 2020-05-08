@@ -1,13 +1,20 @@
 package service
 
 import domain.Data
+import exception.AlreadySavedException
+import repository.DataRepository
 
 class DataService {
-  private var dataList: List[Data] = List()
+  private val dataRepository = new DataRepository()
 
-  def save(data: Data): Unit = dataList = dataList.appended(data)
+  def save(data: Data): Unit = {
+    val dataOption = dataRepository.findById(data.id)
+    if (dataOption.isDefined) {
+      throw new AlreadySavedException()
+    }
+    dataRepository.save(data)
+  }
 
-  def findById(id: Long): Option[Data] = dataList.find(data => data.id == id)
-
-  def findAll(): List[Data] = dataList
+  def findById(id: Long): Option[Data] =
+    dataRepository.findById(id)
 }
