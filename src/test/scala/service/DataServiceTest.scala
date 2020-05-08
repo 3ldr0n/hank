@@ -23,4 +23,21 @@ class DataServiceTest extends FunSuite {
     assert(dataFound.isEmpty)
   }
 
+  test("Find all data") {
+    val dataService = new DataService()
+    dataService.save(Data(1L, "data1"))
+    dataService.save(Data(2L, "data2"))
+    val dataFound = dataService.findAll()
+
+    assert(dataFound.size == 2)
+  }
+
+  test("Find all data without any data") {
+    val dataService = new DataService()
+
+    val dataFound = dataService.findAll()
+
+    assert(dataFound.isEmpty)
+  }
+
 }
