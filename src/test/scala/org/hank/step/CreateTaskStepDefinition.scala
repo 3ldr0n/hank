@@ -16,7 +16,7 @@ class CreateTaskStepDefinition extends ScalaDsl with EN {
     print(numberOfTasks)
   }
 
-   And("""^the task status is (.*)$""") { status: String =>
+   And("""the task status is (.*)""") { status: String =>
     print(status)
   }
 
