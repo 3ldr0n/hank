@@ -1,5 +1,7 @@
 package org.hank.repository
 
+import java.util.UUID
+
 import org.hank.domain.Task
 
 class TaskRepository {
@@ -7,7 +9,7 @@ class TaskRepository {
 
   def save(task: Task): Unit = tasks = task :: tasks
 
-  def findById(id: Long): Option[Task] = tasks.find(task => task.id == id)
+  def findById(id: UUID): Option[Task] = tasks.find(task => task.id == id)
 
   def findAll(): List[Task] = tasks
 }

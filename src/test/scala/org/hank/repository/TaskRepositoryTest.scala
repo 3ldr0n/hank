@@ -9,7 +9,7 @@ class TaskRepositoryTest extends FunSuite {
 
   test("Save and find task") {
     val taskRepository = new TaskRepository()
-    val task = Task(1L, "task", TaskStatus.OPEN, LocalDateTime.now())
+    val task = Task(content = "task", status = TaskStatus.OPEN, dueDate = LocalDateTime.now())
     taskRepository.save(task)
     val taskFound = taskRepository.findById(task.id)
 
@@ -19,7 +19,7 @@ class TaskRepositoryTest extends FunSuite {
 
   test("Try to find task not saved") {
     val taskRepository = new TaskRepository()
-    val task = Task(1L, "task", TaskStatus.OPEN, LocalDateTime.now())
+    val task = Task(content = "task", status = TaskStatus.OPEN, dueDate = LocalDateTime.now())
     val taskFound = taskRepository.findById(task.id)
 
     assert(taskFound.isEmpty)
@@ -27,8 +27,8 @@ class TaskRepositoryTest extends FunSuite {
 
   test("Find all tasks") {
     val taskRepository = new TaskRepository()
-    taskRepository.save(Task(1L, "task1", TaskStatus.OPEN, LocalDateTime.now()))
-    taskRepository.save(Task(2L, "task2", TaskStatus.OPEN, LocalDateTime.now()))
+    taskRepository.save(Task(content = "task", status = TaskStatus.OPEN, dueDate = LocalDateTime.now()))
+    taskRepository.save(Task(content = "task", status = TaskStatus.OPEN, dueDate = LocalDateTime.now()))
     val tasksFound = taskRepository.findAll()
 
     assert(tasksFound.size == 2)

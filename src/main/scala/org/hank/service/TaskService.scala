@@ -1,5 +1,7 @@
 package org.hank.service
 
+import java.util.UUID
+
 import org.hank.domain.Task
 import org.hank.exception.AlreadySavedException
 import org.hank.repository.TaskRepository
@@ -9,13 +11,13 @@ class TaskService(
 ) {
 
   def save(task: Task): Unit = {
-    val taskOption = taskRepository.findById(task.id)
-    if (taskOption.isDefined) {
+    val maybeTask = taskRepository.findById(task.id)
+    if (maybeTask.isDefined) {
       throw new AlreadySavedException()
     }
     taskRepository.save(task)
   }
 
-  def findById(id: Long): Option[Task] =
+  def findById(id: UUID): Option[Task] =
     taskRepository.findById(id)
 }
