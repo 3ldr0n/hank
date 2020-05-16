@@ -20,4 +20,6 @@ class TaskService(
 
   def findById(id: UUID): Option[Task] =
     taskRepository.findById(id)
+
+  def removeAll(): Unit = taskRepository.removeAll()
 }

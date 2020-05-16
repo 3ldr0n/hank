@@ -23,4 +23,6 @@ class TaskEntryPoint(
     taskService.findById(task.id)
   }
 
+  def removeAllTasks(): Unit = taskService.removeAll()
+
 }
