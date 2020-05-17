@@ -13,7 +13,7 @@ class TaskRepository {
 
   def findById(id: UUID): Option[Task] = tasks.find(task => task.id == id)
 
-  def findAll(): List[Task] = List(tasks)
+  def findAll(): List[Task] = tasks.result()
 
   def removeAll(): Unit = tasks.clear()
 }

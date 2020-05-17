@@ -8,7 +8,7 @@ import org.hank.vo.CreateTaskRequest
 class CreateTaskStepDefinition extends ScalaDsl with EN with JacksonDefaultDataTableEntryTransformer {
 
   private val taskEntryPoint = new TaskEntryPoint
-  private var taskCode: String
+  private var taskCode: String = ""
 
   Given("""there are no tasks registered""") { () =>
     taskEntryPoint.removeAllTasks()
